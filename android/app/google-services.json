@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "349259267321",
+    "project_id": "glowhub-5225f",
+    "storage_bucket": "glowhub-5225f.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:349259267321:android:efd6651386b5b07275f628",
+        "android_client_info": {
+          "package_name": "com.example.glow_hub"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "349259267321-812l9b3806ju3tb2naupb07nbm0pqs2j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBXfgV57UzZs1FWwnmf1lrTLZGsQqj7F18"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "349259267321-812l9b3806ju3tb2naupb07nbm0pqs2j.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "349259267321-4a84v7p7vib7bcohie4pg6feb8uikh7f.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.glowHub"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
