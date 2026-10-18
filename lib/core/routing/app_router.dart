@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:glow_hub/core/firebase_helper/firebase_initial.dart';
+import 'package:glow_hub/features/authentication/presentation/cubit/auth_cubit.dart';
+import 'package:glow_hub/features/authentication/presentation/ui/pages/on_boarding/on_boarding_Screen.dart';
+import 'package:glow_hub/features/authentication/presentation/ui/pages/sign_in/sign_in_screen.dart';
+import 'package:glow_hub/features/authentication/presentation/ui/pages/sign_up/sign_up_screen.dart';
 import 'routes.dart';
 
 class AppRouter {
@@ -15,31 +20,82 @@ class AppRouter {
                   body: Center(child: CircularProgressIndicator()),
                 );
               }
+
               if (snapshot.hasData && snapshot.data != null) {
-                return Scaffold(body: Center(child: Text('home')));
+                final String uid = snapshot.data!.uid;
+
+                return FutureBuilder(
+                  future: FireBaseInitial.firestore
+                      .collection('users')
+                      .doc(uid)
+                      .get(),
+                  builder: (context, userSnapshot) {
+                    if (userSnapshot.connectionState ==
+                        ConnectionState.waiting) {
+                      return const Scaffold(
+                        body: Center(child: CircularProgressIndicator()),
+                      );
+                    }
+
+                    if (userSnapshot.hasData && userSnapshot.data!.exists) {
+                      final userData = userSnapshot.data!.data();
+                      final String role = userData?['role'] ?? 'customer';
+
+                      if (role == 'admin') {
+                        return const Scaffold(
+                          body: Center(
+                            child: Text('Admin Role .. coming soon'),
+                          ),
+                        );
+                      } else {
+                        return const Scaffold(
+                          body: Center(
+                            child: Text('Client Role .. coming soon'),
+                          ),
+                        );
+                        // return const CustomerHomeScreen();
+                      }
+                    }
+
+                    return const OnboardingScreen();
+                  },
+                );
               }
-              return Scaffold(body: Center(child: Text('login / sign up')));
+
+              return const OnboardingScreen();
             },
           ),
         );
 
-      case Routes.onboarding:
-      // return MaterialPageRoute(builder: (_) => const OnboardingScreen());
-
       case Routes.login:
-      // return MaterialPageRoute(builder: (_) => const LoginScreen());
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (context) => AuthCubit(),
+            child: const SignInScreen(),
+          ),
+        );
 
       case Routes.signUp:
-      // return MaterialPageRoute(builder: (_) => const SignUpScreen());
-
-      case Routes.roleSelection:
-      // return MaterialPageRoute(builder: (_) => const RoleSelectionScreen());
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (context) => AuthCubit(),
+            child: const SignUpScreen(),
+          ),
+        );
 
       case Routes.adminHomeScreen:
-      // return MaterialPageRoute(builder: (_) => const AdminHomeScreen());
+        return MaterialPageRoute(
+          builder: (context) => const Scaffold(
+            body: Center(child: Text('Admin Role .. coming soon')),
+          ),
+        );
 
-      case Routes.userHomeScreen:
-      // return MaterialPageRoute(builder: (_) => const CustomerHomeScreen());
+      case Routes.clientHomeScreen:
+        return MaterialPageRoute(
+          builder: (context) => const Scaffold(
+            body: Center(child: Text('Client Role .. coming soon')),
+          ),
+        );
 
       default:
         return MaterialPageRoute(

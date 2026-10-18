@@ -11,20 +11,18 @@ class Routes {
 
   // 2. Admin / Owner Routes
   static const String adminHomeScreen = '/adminHomeScreen';
-  static const String adminCenterSetupScreen =
-      '/adminCenterSetupScreen'; // تأسيس الصالون لأول مرة
-  static const String adminCenterSettingsScreen =
-      '/adminCenterSettingsScreen'; // إعدادات وتعديل بيانات الصالون للأدمن
+  static const String adminCenterSetupScreen = '/adminCenterSetupScreen';
+  static const String adminCenterSettingsScreen = '/adminCenterSettingsScreen';
   static const String adminAddServiceScreen = '/adminAddServiceScreen';
   static const String adminManageServicesScreen = '/adminManageServicesScreen';
 
   // 3. Customer Routes
-  static const String userHomeScreen = '/userHomeScreen';
+  static const String clientHomeScreen = '/userHomeScreen';
   static const String salonDetailsScreen = '/salonDetailsScreen';
   static const String bookingScreen = '/bookingScreen';
   static const String myAppointmentsScreen = '/myAppointmentsScreen';
   static const String userPreferencesSettingsScreen =
-      '/userPreferencesSettingsScreen'; // إعدادات وتفضيلات العميل
+      '/userPreferencesSettingsScreen';
 
   // 4. Shared Routes (Notifications Only)
   static const String notificationsScreen = '/notificationsScreen';

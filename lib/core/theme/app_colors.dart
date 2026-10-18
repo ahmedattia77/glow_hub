@@ -26,7 +26,7 @@ class AppColors {
 
   // Button Gradient (Dark)
   static const LinearGradient buttonGradientDark = LinearGradient(
-    colors: [Color(0xFFD4959A), Color(0xFFB87378)],
+    colors: [Color(0xFFA35F64), primaryDark, Color(0xFFA35F64)],
     begin: Alignment.centerLeft,
     end: Alignment.centerRight,
   );
