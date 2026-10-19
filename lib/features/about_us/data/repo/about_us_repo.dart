@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:glow_hub/features/about_us/data/model/about_feature_model.dart';
 
 class AboutUsRepo {
+  const AboutUsRepo();
+
   final String title = "About Us";
 
   final String description =

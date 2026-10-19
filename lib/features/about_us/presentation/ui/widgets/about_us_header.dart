@@ -8,11 +8,11 @@ class AboutUsHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final primaryColor = isDark ? AppColors.primaryDark : AppColors.primaryLight;
 
     return SizedBox(
       height: 230.h,
       child: Stack(
-        clipBehavior: Clip.none,
         alignment: Alignment.topCenter,
         children: [
           // Curved Rose Gold Gradient Header Background
@@ -35,6 +35,7 @@ class AboutUsHeader extends StatelessWidget {
             child: Container(
               width: 96.w,
               height: 96.w,
+              padding: EdgeInsets.all(7.w),
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 color: (isDark ? AppColors.surfaceDark : Colors.white).withValues(alpha: 0.6),
@@ -46,22 +47,19 @@ class AboutUsHeader extends StatelessWidget {
                   ),
                 ],
               ),
-              padding: EdgeInsets.all(7.w),
               child: Container(
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   color: isDark ? AppColors.surfaceDark : Colors.white,
                   border: Border.all(
-                    color: (isDark ? AppColors.primaryDark : AppColors.primaryLight).withValues(alpha: 0.4),
+                    color: primaryColor.withValues(alpha: 0.4),
                     width: 1.5.w,
                   ),
                 ),
                 child: Center(
                   child: CustomPaint(
                     size: Size(44.w, 44.w),
-                    painter: _GlobeEmblemPainter(
-                      color: isDark ? AppColors.primaryDark : AppColors.primaryLight,
-                    ),
+                    painter: _GlobeEmblemPainter(color: primaryColor),
                   ),
                 ),
               ),
@@ -76,23 +74,16 @@ class AboutUsHeader extends StatelessWidget {
 class _HeaderCurveClipper extends CustomClipper<Path> {
   @override
   Path getClip(Size size) {
-    final path = Path();
-    path.lineTo(0, size.height - 35.h);
-
-    // Smooth convex curve dipping in the center
-    final controlPoint = Offset(size.width / 2, size.height + 15.h);
-    final endPoint = Offset(size.width, size.height - 35.h);
-
-    path.quadraticBezierTo(
-      controlPoint.dx,
-      controlPoint.dy,
-      endPoint.dx,
-      endPoint.dy,
-    );
-
-    path.lineTo(size.width, 0);
-    path.close();
-    return path;
+    return Path()
+      ..lineTo(0, size.height - 35.h)
+      ..quadraticBezierTo(
+        size.width / 2,
+        size.height + 15.h,
+        size.width,
+        size.height - 35.h,
+      )
+      ..lineTo(size.width, 0)
+      ..close();
   }
 
   @override
@@ -118,51 +109,18 @@ class _GlobeEmblemPainter extends CustomPainter {
     // Outer circle
     canvas.drawCircle(center, radius, paint);
 
-    // Organic stylized lines representing the brand globe / beauty elements
-    final path1 = Path();
-    path1.moveTo(center.dx - radius * 0.7, center.dy - radius * 0.2);
-    path1.quadraticBezierTo(
-      center.dx - radius * 0.1,
-      center.dy - radius * 0.7,
-      center.dx + radius * 0.2,
-      center.dy - radius * 0.85,
-    );
-    canvas.drawPath(path1, paint);
+    // Brand emblem stylized arcs
+    final path = Path()
+      ..moveTo(center.dx - radius * 0.7, center.dy - radius * 0.2)
+      ..quadraticBezierTo(center.dx - radius * 0.1, center.dy - radius * 0.7, center.dx + radius * 0.2, center.dy - radius * 0.85)
+      ..moveTo(center.dx - radius * 0.85, center.dy + radius * 0.2)
+      ..cubicTo(center.dx - radius * 0.3, center.dy + radius * 0.1, center.dx + radius * 0.1, center.dy + radius * 0.6, center.dx + radius * 0.4, center.dy + radius * 0.8)
+      ..moveTo(center.dx + radius * 0.1, center.dy - radius * 0.4)
+      ..quadraticBezierTo(center.dx + radius * 0.6, center.dy - radius * 0.2, center.dx + radius * 0.75, center.dy + radius * 0.3)
+      ..moveTo(center.dx, center.dy - radius)
+      ..cubicTo(center.dx + radius * 0.5, center.dy - radius * 0.5, center.dx + radius * 0.5, center.dy + radius * 0.5, center.dx, center.dy + radius);
 
-    final path2 = Path();
-    path2.moveTo(center.dx - radius * 0.85, center.dy + radius * 0.2);
-    path2.cubicTo(
-      center.dx - radius * 0.3,
-      center.dy + radius * 0.1,
-      center.dx + radius * 0.1,
-      center.dy + radius * 0.6,
-      center.dx + radius * 0.4,
-      center.dy + radius * 0.8,
-    );
-    canvas.drawPath(path2, paint);
-
-    final path3 = Path();
-    path3.moveTo(center.dx + radius * 0.1, center.dy - radius * 0.4);
-    path3.quadraticBezierTo(
-      center.dx + radius * 0.6,
-      center.dy - radius * 0.2,
-      center.dx + radius * 0.75,
-      center.dy + radius * 0.3,
-    );
-    canvas.drawPath(path3, paint);
-
-    // Subtle meridian arc
-    final meridianPath = Path();
-    meridianPath.moveTo(center.dx, center.dy - radius);
-    meridianPath.cubicTo(
-      center.dx + radius * 0.5,
-      center.dy - radius * 0.5,
-      center.dx + radius * 0.5,
-      center.dy + radius * 0.5,
-      center.dx,
-      center.dy + radius,
-    );
-    canvas.drawPath(meridianPath, paint..color = color.withValues(alpha: 0.6));
+    canvas.drawPath(path, paint);
   }
 
   @override

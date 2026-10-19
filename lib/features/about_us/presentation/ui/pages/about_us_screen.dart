@@ -6,20 +6,15 @@ import 'package:glow_hub/features/about_us/data/repo/about_us_repo.dart';
 import 'package:glow_hub/features/about_us/presentation/ui/widgets/about_feature_item.dart';
 import 'package:glow_hub/features/about_us/presentation/ui/widgets/about_us_header.dart';
 
-class AboutUsScreen extends StatefulWidget {
+class AboutUsScreen extends StatelessWidget {
   final VoidCallback? onButtonPressed;
+  final AboutUsRepo repo;
 
   const AboutUsScreen({
     super.key,
     this.onButtonPressed,
+    this.repo = const AboutUsRepo(),
   });
-
-  @override
-  State<AboutUsScreen> createState() => _AboutUsScreenState();
-}
-
-class _AboutUsScreenState extends State<AboutUsScreen> {
-  final AboutUsRepo _repo = AboutUsRepo();
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +24,6 @@ class _AboutUsScreenState extends State<AboutUsScreen> {
       backgroundColor: isDark ? AppColors.backgroundDark : AppColors.backgroundLight,
       body: SingleChildScrollView(
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             // Top Curved Gradient Header with Logo Emblem
             const AboutUsHeader(),
@@ -38,7 +32,7 @@ class _AboutUsScreenState extends State<AboutUsScreen> {
 
             // Title
             Text(
-              _repo.title,
+              repo.title,
               style: TextStyle(
                 fontSize: 26.sp,
                 fontWeight: FontWeight.bold,
@@ -54,7 +48,7 @@ class _AboutUsScreenState extends State<AboutUsScreen> {
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 32.w),
               child: Text(
-                _repo.description,
+                repo.description,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 13.5.sp,
@@ -73,7 +67,7 @@ class _AboutUsScreenState extends State<AboutUsScreen> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: _repo.features.map((feature) {
+                children: repo.features.map((feature) {
                   return Expanded(
                     child: AboutFeatureItem(model: feature),
                   );
@@ -88,7 +82,7 @@ class _AboutUsScreenState extends State<AboutUsScreen> {
               padding: EdgeInsets.symmetric(horizontal: 24.w),
               child: CustomAppButton(
                 text: "About Us",
-                onPressed: widget.onButtonPressed ??
+                onPressed: onButtonPressed ??
                     () {
                       if (Navigator.canPop(context)) {
                         Navigator.pop(context);
