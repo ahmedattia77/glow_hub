@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:glow_hub/core/common_widgets/curved_header_background.dart';
 import 'package:glow_hub/core/common_widgets/custom_app_button.dart';
 import 'package:glow_hub/core/theme/app_colors.dart';
 import 'package:glow_hub/features/about_us/data/repo/about_us_repo.dart';
 import 'package:glow_hub/features/about_us/presentation/ui/widgets/about_feature_item.dart';
-import 'package:glow_hub/features/about_us/presentation/ui/widgets/about_us_header.dart';
 
 class AboutUsScreen extends StatelessWidget {
   final VoidCallback? onButtonPressed;
@@ -18,25 +18,24 @@ class AboutUsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final theme = Theme.of(context);
+    final isDark = theme.brightness == Brightness.dark;
 
     return Scaffold(
       backgroundColor: isDark ? AppColors.backgroundDark : AppColors.backgroundLight,
       body: SingleChildScrollView(
         child: Column(
           children: [
-            // Top Curved Gradient Header with Logo Emblem
-            const AboutUsHeader(),
+            // Top Curved Gradient Header Background
+            const CurvedHeaderBackground(),
 
             SizedBox(height: 18.h),
 
             // Title
             Text(
               repo.title,
-              style: TextStyle(
+              style: theme.textTheme.displayLarge?.copyWith(
                 fontSize: 26.sp,
-                fontWeight: FontWeight.bold,
-                color: isDark ? AppColors.textPrimaryDark : AppColors.textPrimaryLight,
                 letterSpacing: 0.2,
               ),
               textAlign: TextAlign.center,
@@ -50,7 +49,7 @@ class AboutUsScreen extends StatelessWidget {
               child: Text(
                 repo.description,
                 textAlign: TextAlign.center,
-                style: TextStyle(
+                style: theme.textTheme.bodyMedium?.copyWith(
                   fontSize: 13.5.sp,
                   color: isDark ? AppColors.textSecondaryDark : AppColors.textSecondaryLight,
                   height: 1.55,

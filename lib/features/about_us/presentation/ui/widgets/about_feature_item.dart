@@ -13,7 +13,8 @@ class AboutFeatureItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final theme = Theme.of(context);
+    final isDark = theme.brightness == Brightness.dark;
     final primaryColor = isDark ? AppColors.primaryDark : AppColors.primaryLight;
 
     return Column(
@@ -52,7 +53,7 @@ class AboutFeatureItem extends StatelessWidget {
         Text(
           model.title,
           textAlign: TextAlign.center,
-          style: TextStyle(
+          style: theme.textTheme.bodyMedium?.copyWith(
             fontSize: 12.sp,
             fontWeight: FontWeight.w600,
             color: isDark ? AppColors.textPrimaryDark : AppColors.textPrimaryLight,
