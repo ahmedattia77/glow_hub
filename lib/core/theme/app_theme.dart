@@ -82,7 +82,7 @@ class AppTheme {
         fontWeight: FontWeight.bold,
       ),
       bodyLarge: TextStyle(color: AppColors.textPrimaryDark, fontSize: 16),
-      bodyMedium: TextStyle(color: AppColors.textPrimaryDark, fontSize: 14),
+      bodyMedium: TextStyle(color: AppColors.textSecondaryDark, fontSize: 14),
     ),
 
     elevatedButtonTheme: ElevatedButtonThemeData(
