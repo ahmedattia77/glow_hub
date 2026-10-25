@@ -50,7 +50,7 @@ class CustomAppButton extends StatelessWidget {
                 )
               : Text(
                   text,
-                  style: TextStyle(
+                  style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                     color: isDark ? Colors.black : Colors.white,
                     fontSize: 16.sp,
                     fontWeight: FontWeight.bold,
