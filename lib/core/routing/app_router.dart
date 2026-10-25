@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:glow_hub/core/firebase_helper/firebase_initial.dart';
+import 'package:glow_hub/features/admin_home/presentation/ui/pages/admin_home_screen.dart';
 import 'package:glow_hub/features/authentication/presentation/cubit/auth_cubit.dart';
 import 'package:glow_hub/features/authentication/presentation/ui/pages/on_boarding/on_boarding_Screen.dart';
 import 'package:glow_hub/features/authentication/presentation/ui/pages/sign_in/sign_in_screen.dart';
@@ -42,11 +43,7 @@ class AppRouter {
                       final String role = userData?['role'] ?? 'customer';
 
                       if (role == 'admin') {
-                        return const Scaffold(
-                          body: Center(
-                            child: Text('Admin Role .. coming soon'),
-                          ),
-                        );
+                        return const AdminHomeScreen();
                       } else {
                         return const Scaffold(
                           body: Center(
@@ -85,9 +82,7 @@ class AppRouter {
 
       case Routes.adminHomeScreen:
         return MaterialPageRoute(
-          builder: (context) => const Scaffold(
-            body: Center(child: Text('Admin Role .. coming soon')),
-          ),
+          builder: (context) => const AdminHomeScreen(),
         );
 
       case Routes.clientHomeScreen:
