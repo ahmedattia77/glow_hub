@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'app_colors.dart';
 
 class AppTheme {
@@ -13,7 +14,6 @@ class AppTheme {
       primary: AppColors.primaryLight,
       secondary: AppColors.secondaryLight,
       surface: AppColors.surfaceLight,
-      // background: AppColors.backgroundLight,
     ),
 
     appBarTheme: const AppBarTheme(
@@ -28,6 +28,31 @@ class AppTheme {
       ),
     ),
 
+    bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+      backgroundColor: AppColors.surfaceLight,
+      type: BottomNavigationBarType.fixed,
+      elevation: 8.0,
+      selectedItemColor: AppColors.primaryLight,
+      unselectedItemColor: AppColors.textSecondaryLight,
+      selectedIconTheme: IconThemeData(color: AppColors.primaryLight, size: 26),
+      unselectedIconTheme: IconThemeData(
+        color: AppColors.textSecondaryLight,
+        size: 24,
+      ),
+      selectedLabelStyle: TextStyle(
+        fontSize: 12,
+        fontWeight: FontWeight.w600,
+        color: AppColors.primaryLight,
+      ),
+      unselectedLabelStyle: TextStyle(
+        fontSize: 12,
+        fontWeight: FontWeight.w400,
+        color: AppColors.textSecondaryLight,
+      ),
+      showSelectedLabels: true,
+      showUnselectedLabels: true,
+    ),
+
     textTheme: const TextTheme(
       displayLarge: TextStyle(
         color: AppColors.textPrimaryLight,
@@ -36,6 +61,7 @@ class AppTheme {
       ),
       bodyLarge: TextStyle(color: AppColors.textPrimaryLight, fontSize: 16),
       bodyMedium: TextStyle(color: AppColors.textSecondaryLight, fontSize: 14),
+      bodySmall: TextStyle(color: AppColors.textSecondaryLight, fontSize: 12),
     ),
 
     elevatedButtonTheme: ElevatedButtonThemeData(
@@ -60,7 +86,6 @@ class AppTheme {
       primary: AppColors.primaryDark,
       secondary: AppColors.secondaryDark,
       surface: AppColors.surfaceDark,
-      // background: AppColors.backgroundDark,
     ),
 
     appBarTheme: const AppBarTheme(
@@ -75,6 +100,26 @@ class AppTheme {
       ),
     ),
 
+    bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+      backgroundColor: AppColors.surfaceDark,
+      type: BottomNavigationBarType.fixed,
+      elevation: 8.0,
+      selectedItemColor: AppColors.primaryDark,
+      unselectedItemColor: AppColors.textSecondaryDark,
+      selectedIconTheme: IconThemeData(color: AppColors.primaryDark, size: 26),
+      unselectedIconTheme: IconThemeData(
+        color: AppColors.textSecondaryDark,
+        size: 24,
+      ),
+      selectedLabelStyle: TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
+      unselectedLabelStyle: TextStyle(
+        fontSize: 12,
+        fontWeight: FontWeight.w400,
+      ),
+      showSelectedLabels: true,
+      showUnselectedLabels: true,
+    ),
+
     textTheme: const TextTheme(
       displayLarge: TextStyle(
         color: AppColors.textPrimaryDark,
@@ -82,7 +127,7 @@ class AppTheme {
         fontWeight: FontWeight.bold,
       ),
       bodyLarge: TextStyle(color: AppColors.textPrimaryDark, fontSize: 16),
-      bodyMedium: TextStyle(color: AppColors.textPrimaryDark, fontSize: 14),
+      bodyMedium: TextStyle(color: AppColors.textSecondaryDark, fontSize: 14),
     ),
 
     elevatedButtonTheme: ElevatedButtonThemeData(
