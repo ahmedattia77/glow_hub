@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+// declaring user role
 enum UserRole { client, admin }
 
 class RoleSelectorWidget extends StatelessWidget {

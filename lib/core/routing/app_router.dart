@@ -5,6 +5,8 @@ import 'package:glow_hub/features/authentication/presentation/cubit/auth_cubit.d
 import 'package:glow_hub/features/authentication/presentation/ui/pages/on_boarding/on_boarding_Screen.dart';
 import 'package:glow_hub/features/authentication/presentation/ui/pages/sign_in/sign_in_screen.dart';
 import 'package:glow_hub/features/authentication/presentation/ui/pages/sign_up/sign_up_screen.dart';
+import 'package:glow_hub/features/authentication/presentation/ui/widgest/user_role.dart';
+import 'package:glow_hub/features/home/presentation/ui/pages/main_layout.dart';
 import 'routes.dart';
 
 class AppRouter {
@@ -20,7 +22,6 @@ class AppRouter {
                   body: Center(child: CircularProgressIndicator()),
                 );
               }
-
               if (snapshot.hasData && snapshot.data != null) {
                 final String uid = snapshot.data!.uid;
 
@@ -42,18 +43,9 @@ class AppRouter {
                       final String role = userData?['role'] ?? 'customer';
 
                       if (role == 'admin') {
-                        return const Scaffold(
-                          body: Center(
-                            child: Text('Admin Role .. coming soon'),
-                          ),
-                        );
+                        return MainLayout(userRole: UserRole.admin);
                       } else {
-                        return const Scaffold(
-                          body: Center(
-                            child: Text('Client Role .. coming soon'),
-                          ),
-                        );
-                        // return const CustomerHomeScreen();
+                        return MainLayout(userRole: UserRole.client);
                       }
                     }
 
@@ -80,20 +72,6 @@ class AppRouter {
           builder: (_) => BlocProvider(
             create: (context) => AuthCubit(),
             child: const SignUpScreen(),
-          ),
-        );
-
-      case Routes.adminHomeScreen:
-        return MaterialPageRoute(
-          builder: (context) => const Scaffold(
-            body: Center(child: Text('Admin Role .. coming soon')),
-          ),
-        );
-
-      case Routes.clientHomeScreen:
-        return MaterialPageRoute(
-          builder: (context) => const Scaffold(
-            body: Center(child: Text('Client Role .. coming soon')),
           ),
         );
 
