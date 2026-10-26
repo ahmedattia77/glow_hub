@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:glow_hub/core/firebase_helper/firebase_initial.dart';
 import 'package:glow_hub/features/authentication/presentation/cubit/auth_cubit.dart';
-import 'package:glow_hub/features/authentication/presentation/ui/pages/on_boarding/on_boarding_Screen.dart';
+import 'package:glow_hub/features/authentication/presentation/ui/pages/on_boarding/on_boarding_screen.dart';
 import 'package:glow_hub/features/authentication/presentation/ui/pages/sign_in/sign_in_screen.dart';
 import 'package:glow_hub/features/authentication/presentation/ui/pages/sign_up/sign_up_screen.dart';
 import 'package:glow_hub/features/authentication/presentation/ui/widgest/user_role.dart';
@@ -59,6 +59,11 @@ class AppRouter {
           ),
         );
 
+      case Routes.onboarding:
+        return MaterialPageRoute(
+          builder: (_) => const OnboardingScreen(),
+        );
+
       case Routes.login:
         return MaterialPageRoute(
           builder: (_) => BlocProvider(
@@ -73,6 +78,16 @@ class AppRouter {
             create: (context) => AuthCubit(),
             child: const SignUpScreen(),
           ),
+        );
+
+      case Routes.adminHomeScreen:
+        return MaterialPageRoute(
+          builder: (_) => const MainLayout(userRole: UserRole.admin),
+        );
+
+      case Routes.clientHomeScreen:
+        return MaterialPageRoute(
+          builder: (_) => const MainLayout(userRole: UserRole.client),
         );
 
       default:
