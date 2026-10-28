@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
           title: 'Glow Hub',
           theme: AppTheme.lightTheme,
           darkTheme: AppTheme.darkTheme,
-          themeMode: ThemeMode.dark,
+          themeMode: ThemeMode.system,
           initialRoute: Routes.initialRoute,
           onGenerateRoute: (settings) => AppRouter.generateRoute(settings),
         );

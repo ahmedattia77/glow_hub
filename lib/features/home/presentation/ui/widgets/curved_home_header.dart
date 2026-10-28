@@ -12,7 +12,6 @@ class CurvedHomeHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final primaryColor = theme.primaryColor;
-    final TextEditingController controller = TextEditingController();
 
     return ClipPath(
       clipper: HeaderCurvedClipper(),
@@ -83,7 +82,6 @@ class CurvedHomeHeader extends StatelessWidget {
                 context.read<HomeClientCubit>().fetchSalons(
                   searchQuery: value.trim().isEmpty ? null : value,
                 );
-                print("value in $value");
               },
               // controller: controller,
               decoration: InputDecoration(

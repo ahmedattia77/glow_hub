@@ -1,7 +1,6 @@
-import 'package:bloc/bloc.dart';
-import 'package:glow_hub/core/firebase_helper/firebase_initial.dart';
-import 'package:meta/meta.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:glow_hub/core/firebase_helper/firebase_initial.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 part 'auth_state.dart';

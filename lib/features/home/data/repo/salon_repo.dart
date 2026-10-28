@@ -8,7 +8,6 @@ class SalonRepo {
     String? selectedCategory,
   }) async {
     try {
-      print('search qwury == $searchQuery');
       Query<Map<String, dynamic>> query = FireBaseInitial.firestore.collection(
         'salons',
       );

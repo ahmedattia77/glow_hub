@@ -1,7 +1,7 @@
-import 'package:bloc/bloc.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:glow_hub/features/home/data/model/salone_model.dart';
 import 'package:glow_hub/features/home/data/repo/salon_repo.dart';
-import 'package:meta/meta.dart';
 
 part 'home_client_state.dart';
 

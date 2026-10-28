@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:glow_hub/features/home/data/model/nav_item_model.dart';
+import 'package:glow_hub/features/home/presentation/ui/pages/admin_screens/home_admin_screen.dart';
 import 'package:glow_hub/features/home/presentation/ui/pages/client_screens/home_client_screen.dart';
 
 /// client nav items
@@ -45,16 +46,12 @@ final List<NavItemModel> clientNavItems = [
 final List<NavItemModel> adminNavItems = [
   NavItemModel(
     label: 'Dashboard',
-    icon: Icons.dashboard_rounded,
-    screen: const Scaffold(
-      body: Center(
-        child: Text('Admin Dashboard Screen', style: TextStyle(fontSize: 20)),
-      ),
-    ),
+    icon: Icons.grid_view_rounded,
+    screen: const HomeAdminScreen(),
   ),
   NavItemModel(
     label: 'Appointments',
-    icon: Icons.calendar_month_rounded,
+    icon: Icons.calendar_today_outlined,
     screen: const Scaffold(
       body: Center(
         child: Text(
@@ -66,7 +63,7 @@ final List<NavItemModel> adminNavItems = [
   ),
   NavItemModel(
     label: 'Services',
-    icon: Icons.style_rounded,
+    icon: Icons.tune_rounded,
     screen: const Scaffold(
       body: Center(
         child: Text('Admin Services Screen', style: TextStyle(fontSize: 20)),
@@ -75,7 +72,7 @@ final List<NavItemModel> adminNavItems = [
   ),
   NavItemModel(
     label: 'Profile',
-    icon: Icons.person_rounded,
+    icon: Icons.person_outline_rounded,
     screen: const Scaffold(
       body: Center(
         child: Text('Profile Screen', style: TextStyle(fontSize: 20)),

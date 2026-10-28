@@ -25,7 +25,7 @@ class _HomeClientScreenState extends State<HomeClientScreen> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => HomeClientCubit(SalonRepo()),
+      create: (context) => _homeClientCubit,
       child: Scaffold(
         body: SingleChildScrollView(
           child: Column(
@@ -229,7 +229,7 @@ class _CategoryItem extends StatelessWidget {
           Container(
             padding: const EdgeInsets.all(14),
             decoration: BoxDecoration(
-              color: AppColors.primaryLight.withOpacity(0.15),
+              color: AppColors.primaryLight.withValues(alpha: 0.15),
               shape: BoxShape.circle,
             ),
             child: Icon(icon, color: AppColors.primaryLight, size: 26),

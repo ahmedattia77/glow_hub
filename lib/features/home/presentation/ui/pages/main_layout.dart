@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:glow_hub/core/theme/app_colors.dart';
 import 'package:glow_hub/features/authentication/presentation/ui/widgest/user_role.dart';
 import 'package:glow_hub/features/home/data/repo/user_repo.dart';
 
@@ -16,6 +18,7 @@ class _MainLayoutState extends State<MainLayout> {
 
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     final navItems = widget.userRole == UserRole.admin
         ? adminNavItems
         : clientNavItems;
@@ -33,6 +36,16 @@ class _MainLayoutState extends State<MainLayout> {
           });
         },
         type: BottomNavigationBarType.fixed,
+        backgroundColor:
+            isDark ? AppColors.surfaceDark : AppColors.surfaceLight,
+        selectedItemColor:
+            isDark ? AppColors.primaryDark : AppColors.primaryLight,
+        unselectedItemColor:
+            isDark ? AppColors.textSecondaryDark : const Color(0xFF4A4A4A),
+        selectedFontSize: 11.sp,
+        unselectedFontSize: 11.sp,
+        iconSize: 22.sp,
+        elevation: 6,
         items: navItems.map((item) {
           return BottomNavigationBarItem(
             icon: Icon(item.icon),
