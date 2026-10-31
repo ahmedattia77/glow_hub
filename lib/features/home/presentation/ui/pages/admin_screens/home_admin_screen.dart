@@ -114,11 +114,7 @@ class _HomeAdminScreenState extends State<HomeAdminScreen> {
         title: 'Add\nService',
         icon: Icons.add_rounded,
         onTap: () {
-          _showActionNotice(
-            context,
-            'Add Service',
-            'Here you can create services with pricing and duration for your salon.',
-          );
+          Navigator.pushNamed(context, Routes.adminAddServiceScreen);
         },
       ),
       QuickActionItem(
