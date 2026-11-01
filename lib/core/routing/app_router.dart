@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:glow_hub/core/firebase_helper/firebase_initial.dart';
+import 'package:glow_hub/features/about_us/presentation/ui/pages/about_us_screen.dart';
 import 'package:glow_hub/features/authentication/presentation/cubit/auth_cubit.dart';
 import 'package:glow_hub/features/authentication/presentation/ui/pages/on_boarding/on_boarding_screen.dart';
 import 'package:glow_hub/features/authentication/presentation/ui/pages/sign_in/sign_in_screen.dart';
 import 'package:glow_hub/features/authentication/presentation/ui/pages/sign_up/sign_up_screen.dart';
 import 'package:glow_hub/features/authentication/presentation/ui/widgest/user_role.dart';
-import 'package:glow_hub/features/home/presentation/ui/pages/main_layout.dart';
+import 'package:glow_hub/main_layout.dart';
 import 'routes.dart';
 
 class AppRouter {
@@ -60,9 +61,7 @@ class AppRouter {
         );
 
       case Routes.onboarding:
-        return MaterialPageRoute(
-          builder: (_) => const OnboardingScreen(),
-        );
+        return MaterialPageRoute(builder: (_) => const OnboardingScreen());
 
       case Routes.login:
         return MaterialPageRoute(
@@ -80,15 +79,18 @@ class AppRouter {
           ),
         );
 
-      case Routes.adminHomeScreen:
-        return MaterialPageRoute(
-          builder: (_) => const MainLayout(userRole: UserRole.admin),
-        );
+      case Routes.aboutUsScreen:
+        return MaterialPageRoute(builder: (_) => const AboutUsScreen());
 
-      case Routes.clientHomeScreen:
-        return MaterialPageRoute(
-          builder: (_) => const MainLayout(userRole: UserRole.client),
-        );
+      // case Routes.adminHomeScreen:
+      //   return MaterialPageRoute(
+      //     builder: (_) => const MainLayout(userRole: UserRole.admin),
+      //   );
+
+      // case Routes.clientHomeScreen:
+      //   return MaterialPageRoute(
+      //     builder: (_) => const MainLayout(userRole: UserRole.client),
+      //   );
 
       default:
         return MaterialPageRoute(
