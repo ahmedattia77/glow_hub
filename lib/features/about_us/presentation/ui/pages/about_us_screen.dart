@@ -22,7 +22,9 @@ class AboutUsScreen extends StatelessWidget {
     final isDark = theme.brightness == Brightness.dark;
 
     return Scaffold(
-      backgroundColor: isDark ? AppColors.backgroundDark : AppColors.backgroundLight,
+      backgroundColor: isDark
+          ? AppColors.backgroundDark
+          : AppColors.backgroundLight,
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -51,7 +53,9 @@ class AboutUsScreen extends StatelessWidget {
                 textAlign: TextAlign.center,
                 style: theme.textTheme.bodyMedium?.copyWith(
                   fontSize: 13.5.sp,
-                  color: isDark ? AppColors.textSecondaryDark : AppColors.textSecondaryLight,
+                  color: isDark
+                      ? AppColors.textSecondaryDark
+                      : AppColors.textSecondaryLight,
                   height: 1.55,
                   letterSpacing: 0.1,
                 ),
@@ -67,9 +71,7 @@ class AboutUsScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: repo.features.map((feature) {
-                  return Expanded(
-                    child: AboutFeatureItem(model: feature),
-                  );
+                  return Expanded(child: AboutFeatureItem(model: feature));
                 }).toList(),
               ),
             ),
@@ -81,7 +83,8 @@ class AboutUsScreen extends StatelessWidget {
               padding: EdgeInsets.symmetric(horizontal: 24.w),
               child: CustomAppButton(
                 text: "About Us",
-                onPressed: onButtonPressed ??
+                onPressed:
+                    onButtonPressed ??
                     () {
                       if (Navigator.canPop(context)) {
                         Navigator.pop(context);
