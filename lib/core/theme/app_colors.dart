@@ -16,6 +16,33 @@ class AppColors {
     end: Alignment.centerRight,
   );
 
+  // Rose Gold Gradients
+  static const LinearGradient roseGoldGradient = LinearGradient(
+    colors: [Color(0xFFE8B7B0), Color(0xFFD89B92), Color(0xFFC7847B)],
+    begin: Alignment.topLeft,
+    end: Alignment.bottomRight,
+  );
+
+  static const LinearGradient roseGoldHeaderGradient = LinearGradient(
+    colors: [Color(0xFFE5AAA0), Color(0xFFD6948A), Color(0xFFC77E73)],
+    begin: Alignment.topCenter,
+    end: Alignment.bottomCenter,
+  );
+
+  // Admin Cards & Form Colors (Light)
+  static const Color cardBgLight = Color(0xFFFBF1EC);
+  static const Color cardBgInputLight = Color(0xFFF6E7DE);
+  static const Color cardBorderLight = Color(0xFFF2DFD7);
+  static const Color cardBorderInputLight = Color(0xFFEBD4C7);
+  static const Color cardDividerLight = Color(0xFFDFCCC2);
+  static const Color accentDark = Color(0xFF382320);
+  static const Color accentDarkBrown = Color(0xFF4A3531);
+  static const Color textHeaderDark = Color(0xFF2C1E1C);
+  static const Color textSecondaryWarm = Color(0xFF88736E);
+  static const Color hintTextWarm = Color(0xFF9E8A84);
+  static const Color successGreen = Color(0xFF2E7D32);
+  static const Color errorRed = Color(0xFFE53935);
+
   // --- Dark Mode Colors ---
   static const Color primaryDark = Color(0xFFD4959A);
   static const Color secondaryDark = Color(0xFF00A3A3);
