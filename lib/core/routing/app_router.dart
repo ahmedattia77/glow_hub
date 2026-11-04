@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:glow_hub/core/firebase_helper/firebase_initial.dart';
+import 'package:glow_hub/features/about_us/presentation/ui/pages/about_us_screen.dart';
 import 'package:glow_hub/features/authentication/presentation/cubit/auth_cubit.dart';
 import 'package:glow_hub/features/authentication/presentation/ui/pages/on_boarding/on_boarding_screen.dart';
 import 'package:glow_hub/features/authentication/presentation/ui/pages/sign_in/sign_in_screen.dart';
@@ -11,7 +12,7 @@ import 'package:glow_hub/features/home/presentation/ui/cubit/add_service_cubit.d
 import 'package:glow_hub/features/home/presentation/ui/cubit/admin_services_cubit.dart';
 import 'package:glow_hub/features/home/presentation/ui/pages/admin_screens/add_service_screen.dart';
 import 'package:glow_hub/features/home/presentation/ui/pages/admin_screens/admin_services_screen.dart';
-import 'package:glow_hub/features/home/presentation/ui/pages/main_layout.dart';
+import 'package:glow_hub/main_layout.dart';
 import 'routes.dart';
 
 class AppRouter {
@@ -65,9 +66,7 @@ class AppRouter {
         );
 
       case Routes.onboarding:
-        return MaterialPageRoute(
-          builder: (_) => const OnboardingScreen(),
-        );
+        return MaterialPageRoute(builder: (_) => const OnboardingScreen());
 
       case Routes.login:
         return MaterialPageRoute(
@@ -84,6 +83,9 @@ class AppRouter {
             child: const SignUpScreen(),
           ),
         );
+
+      case Routes.aboutUsScreen:
+        return MaterialPageRoute(builder: (_) => const AboutUsScreen());
 
       case Routes.adminHomeScreen:
         return MaterialPageRoute(

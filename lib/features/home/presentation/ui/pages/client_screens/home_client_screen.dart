@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:glow_hub/core/common_widgets/curved_app_header.dart';
 import 'package:glow_hub/features/home/data/repo/salon_repo.dart';
 import 'package:glow_hub/features/home/presentation/ui/cubit/home_client_cubit.dart';
-import 'package:glow_hub/features/home/presentation/ui/widgets/curved_home_header.dart';
 import 'package:glow_hub/features/home/presentation/ui/widgets/salon_item_card.dart';
 import '../../../../../../core/theme/app_colors.dart';
 
@@ -31,7 +31,62 @@ class _HomeClientScreenState extends State<HomeClientScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const CurvedHomeHeader(),
+              CurvedAppHeader(
+                showNotification: true,
+                notificationCount: 3,
+                titleWidget: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        Icon(
+                          Icons.location_on_outlined,
+                          color: Colors.white70,
+                          size: 18.sp,
+                        ),
+                        const SizedBox(width: 4),
+                        Text(
+                          'Location',
+                          style: Theme.of(context).textTheme.bodySmall,
+                        ),
+                        const Icon(
+                          Icons.keyboard_arrow_down,
+                          color: Colors.white70,
+                          size: 18,
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 2.h),
+                    Text(
+                      'Cairo, Egypt',
+                      style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ],
+                ),
+                bottomChild: TextField(
+                  onChanged: (value) {
+                    context.read<HomeClientCubit>().fetchSalons(
+                      searchQuery: value.trim().isEmpty ? null : value,
+                    );
+                  },
+                  decoration: InputDecoration(
+                    hintText: 'Search salons, services...',
+                    prefixIcon: Icon(
+                      Icons.search_rounded,
+                      color: Theme.of(context).primaryColor,
+                    ),
+                    filled: true,
+                    fillColor: Theme.of(context).colorScheme.surface,
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(15),
+                      borderSide: BorderSide.none,
+                    ),
+                  ),
+                ),
+              ),
 
               const SizedBox(height: 10),
 
