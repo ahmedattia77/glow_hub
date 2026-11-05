@@ -2,31 +2,28 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:glow_hub/core/theme/app_colors.dart';
 import 'package:glow_hub/features/home/data/model/admin_dashboard_models.dart';
+import 'package:glow_hub/features/home/data/repo/admin_dashboard_repo.dart';
+import 'appointment_details_dialog.dart';
 
-class AdminAppointmentsSection extends StatelessWidget {
-  final int total;
-  final int confirmed;
-  final int completed;
-  final int cancelled;
-  final List<AppointmentItem> appointments;
-  final ValueChanged<AppointmentItem>? onAppointmentTap;
+class HomeAdminAppointmentsSection extends StatelessWidget {
+  final AdminDashboardRepo repo;
 
-  const AdminAppointmentsSection({
+  const HomeAdminAppointmentsSection({
     super.key,
-    required this.total,
-    required this.confirmed,
-    required this.completed,
-    required this.cancelled,
-    required this.appointments,
-    this.onAppointmentTap,
+    required this.repo,
   });
 
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    final primaryTextColor = isDark
-        ? AppColors.textPrimaryDark
-        : AppColors.textPrimaryLight;
+    final primaryTextColor =
+        isDark ? AppColors.textPrimaryDark : AppColors.textPrimaryLight;
+
+    final total = repo.totalAppointments;
+    final confirmed = repo.confirmedAppointments;
+    final completed = repo.completedAppointments;
+    final cancelled = repo.cancelledAppointments;
+    final appointments = repo.todayAppointments;
 
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 16.w),
@@ -170,9 +167,7 @@ class AdminAppointmentsSection extends StatelessWidget {
               final item = appointments[index];
               return _AppointmentItemTile(
                 appointment: item,
-                onTap: onAppointmentTap != null
-                    ? () => onAppointmentTap!(item)
-                    : null,
+                onTap: () => showAppointmentDetailsDialog(context, item),
               );
             },
           ),
