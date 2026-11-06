@@ -9,7 +9,6 @@ import 'package:glow_hub/features/salon_details/presentation/ui/widgest/salon_ca
 import 'package:glow_hub/features/salon_details/presentation/ui/widgest/salon_image_header.dart';
 import 'package:glow_hub/features/salon_details/presentation/ui/widgest/salon_info_section.dart';
 import 'package:glow_hub/features/salon_details/presentation/ui/widgest/salon_services_list.dart';
-import 'package:glow_hub/features/salon_details/presentation/ui/widgest/service_type_toggle.dart';
 import 'package:glow_hub/features/salon_details/presentation/ui/widgest/time_slots_grid.dart';
 
 class SalonDetailsScreen extends StatelessWidget {

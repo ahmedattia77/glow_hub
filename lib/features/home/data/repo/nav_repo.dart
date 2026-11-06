@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:glow_hub/core/firebase_helper/firebase_initial.dart';
-import 'package:glow_hub/features/appointments/presentation/ui/pages/user_appointments_screen.dart';
+import 'package:glow_hub/features/appointments/data/model/user_appointments_repo.dart';
+import 'package:glow_hub/features/appointments/presentation/cubit/appointment_cubit.dart';
+import 'package:glow_hub/features/appointments/presentation/ui/pages/client_appointments_screen.dart';
 import 'package:glow_hub/features/home/data/model/shared_models/nav_item_model.dart';
 import 'package:glow_hub/features/home/data/repo/salon_repo.dart';
 import 'package:glow_hub/features/home/presentation/ui/cubit/home_client_cubit.dart';
@@ -34,7 +36,12 @@ final List<NavItemModel> clientNavItems = [
   NavItemModel(
     label: 'Appointments',
     icon: Icons.calendar_today_rounded,
-    screen: const UserAppointmentsScreen(),
+    screen: BlocProvider(
+      create: (context) =>
+          AppointmentCubit(UserAppointmentsRepo())
+            ..getUserAppointments(FireBaseInitial.auth.currentUser?.uid ?? ''),
+      child: const ClientAppointmentsScreen(),
+    ),
   ),
   NavItemModel(
     label: 'Profile',

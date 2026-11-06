@@ -50,11 +50,10 @@ class GradientMainButton extends StatelessWidget {
           constraints: const BoxConstraints(minWidth: 88, minHeight: 48),
           padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 14),
           child: Text(
-            // index 2 3-1 == 2 then we at last index
             _currentIndex == _pages.onBoardingPagesData.length - 1
                 ? "Get Started"
                 : "Next",
-            style: Theme.of(context).textTheme.bodyMedium,
+            style: Theme.of(context).textTheme.bodySmall,
           ),
         ),
       ),
