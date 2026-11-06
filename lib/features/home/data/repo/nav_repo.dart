@@ -81,10 +81,11 @@ final List<NavItemModel> adminNavItems = [
   NavItemModel(
     label: 'Profile',
     icon: Icons.person_outline_rounded,
-    screen: const Scaffold(
-      body: Center(
-        child: Text('Profile Screen', style: TextStyle(fontSize: 20)),
-      ),
+    screen: BlocProvider(
+      create: (context) =>
+          EditProfileCubit(UserRepo())
+            ..loadUserData(FireBaseInitial.auth.currentUser!.uid),
+      child: const ClientProfileScreen(),
     ),
   ),
 ];

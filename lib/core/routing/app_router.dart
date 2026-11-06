@@ -100,6 +100,8 @@ class AppRouter {
             child: SalonDetailsScreen(salonId: salonId),
           ),
           settings: settings,
+        );
+
       case Routes.adminHomeScreen:
         return MaterialPageRoute(
           builder: (_) => const MainLayout(userRole: UserRole.admin),
