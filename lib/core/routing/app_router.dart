@@ -7,6 +7,9 @@ import 'package:glow_hub/features/authentication/presentation/ui/pages/on_boardi
 import 'package:glow_hub/features/authentication/presentation/ui/pages/sign_in/sign_in_screen.dart';
 import 'package:glow_hub/features/authentication/presentation/ui/pages/sign_up/sign_up_screen.dart';
 import 'package:glow_hub/features/authentication/presentation/ui/widgest/user_role.dart';
+import 'package:glow_hub/features/salon_details/data/repo/salon_details_repo.dart';
+import 'package:glow_hub/features/salon_details/presentation/cubit/salon_details_cubit.dart';
+import 'package:glow_hub/features/salon_details/presentation/ui/pages/salon_details_screen.dart';
 import 'package:glow_hub/main_layout.dart';
 import 'routes.dart';
 
@@ -82,10 +85,17 @@ class AppRouter {
       case Routes.aboutUsScreen:
         return MaterialPageRoute(builder: (_) => const AboutUsScreen());
 
-      // case Routes.adminHomeScreen:
-      //   return MaterialPageRoute(
-      //     builder: (_) => const MainLayout(userRole: UserRole.admin),
-      //   );
+      case Routes.salonDetailsScreen:
+        final salonId = settings.arguments as String;
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (context) =>
+                SalonDetailsCubit(SalonDetailsRepo())
+                  ..fetchSalonDetails(salonId),
+            child: SalonDetailsScreen(salonId: salonId),
+          ),
+          settings: settings,
+        );
 
       // case Routes.clientHomeScreen:
       //   return MaterialPageRoute(

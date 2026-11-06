@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:glow_hub/core/firebase_helper/firebase_initial.dart';
 import 'package:glow_hub/core/routing/routes.dart';
 import 'package:glow_hub/core/theme/app_colors.dart';
 import 'package:glow_hub/features/home/presentation/ui/widgets/client_widgets/profile_menu_item.dart';
@@ -137,7 +138,7 @@ class ClientProfileScreen extends StatelessWidget {
                           title: 'Logout',
                           isLogout: true,
                           onTap: () {
-                            // تنفيذ تسجيل الخروج
+                            FireBaseInitial.auth.signOut();
                           },
                         ),
                       ],
