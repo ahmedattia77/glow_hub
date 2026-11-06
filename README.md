@@ -1,17 +1,57 @@
-# glow_hub
+# 🌟 GlowHub - Salon Booking & Management Ecosystem
 
-A new Flutter project.
+**GlowHub** is a comprehensive, cross-platform mobile ecosystem built with Flutter, designed to seamlessly connect beauty salon clients with professional salon service providers and administrators.
 
-## Getting Started
+---
 
-This project is a starting point for a Flutter application.
+## 📱 App Demo Previews
 
-A few resources to get you started if this is your first Flutter project:
+### 👤 Admin Side
 
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
+https://github.com/user-attachments/assets/260e3c45-5c91-4d7b-8bd8-56ec6014a113
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### 🛠️ Client Side
+
+https://github.com/user-attachments/assets/e98ca34e-e22e-44a1-a860-5559e889243e
+
+
+
+
+---
+
+## 🚀 Key Features
+
+### 👤 For Clients:
+* **Interactive Service Selection:** Choose between Home-service or In-salon appointments seamlessly.
+* **Smart Booking Flow:** Browse top-rated salons, filter services, and manage upcoming bookings.
+* **User Profile & History:** Track active appointments and view past history with clean status indicators.
+
+### 🛠️ For Admins & Salon Owners:
+* **Real-time Dashboard:** Live statistics tracking Total, Confirmed, Completed, and Cancelled appointments for the day.
+* **Status Management:** Instantly update booking states with reactive UI synchronization.
+* **Clean Architecture:** Modular separation of concerns ensuring robust scalability and high performance.
+
+---
+
+## 🛠️ Tech Stack & Architecture
+
+* **Framework:** Flutter (Cross-platform mobile development)
+* **State Management:** Flutter Bloc / Cubit (Reactive & Predictable state handling)
+* **Backend & Database:** Firebase Cloud Firestore & Firebase Authentication
+* **Architecture:** Feature-First Clean Architecture (Presentation, Domain, and Data layers)
+* **UI/UX Tooling:** Flutter ScreenUtil for responsive scaling across all screen sizes.
+
+---
+
+## 📂 Project Structure
+
+```text
+lib/
+│
+├── core/                  # Theme, constants, network, and firebase helpers
+├── features/
+│   ├── appointments/      # Shared booking models, repositories, and cubits
+│   ├── home/              # User & Admin home dashboard sections
+│   └── auth/              # Authentication modules
+│
+└── main.dart
