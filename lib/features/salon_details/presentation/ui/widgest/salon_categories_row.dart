@@ -11,6 +11,7 @@ class SalonCategoriesRow extends StatelessWidget {
     final colorScheme = Theme.of(context).colorScheme;
 
     return Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: categories.map((cat) {
         return Column(

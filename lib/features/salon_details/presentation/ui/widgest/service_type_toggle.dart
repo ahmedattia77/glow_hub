@@ -20,7 +20,7 @@ class ServiceTypeToggle extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              'In-Center / Home Service',
+              'Home Service',
               style: TextStyle(
                 fontSize: 14.sp,
                 fontWeight: FontWeight.w600,
@@ -29,7 +29,6 @@ class ServiceTypeToggle extends StatelessWidget {
             ),
             Switch(
               value: isHomeService,
-              activeColor: colorScheme.primary,
               onChanged: (val) {
                 context.read<SalonDetailsCubit>().toggleServiceType(val);
               },

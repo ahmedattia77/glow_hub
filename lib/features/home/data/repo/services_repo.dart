@@ -5,7 +5,6 @@ import 'package:glow_hub/features/home/data/model/service_model.dart';
 class ServicesRepo {
   const ServicesRepo();
 
-  /// Get the current owner's salon ID
   Future<String?> getOwnerSalonId() async {
     try {
       final uid = FireBaseInitial.auth.currentUser?.uid;
@@ -26,7 +25,6 @@ class ServicesRepo {
     }
   }
 
-  /// Get the current owner's salon name
   Future<String> getOwnerSalonName() async {
     try {
       final uid = FireBaseInitial.auth.currentUser?.uid;
@@ -51,16 +49,16 @@ class ServicesRepo {
     }
   }
 
-  /// Save a new service to Firestore
   Future<void> addService(ServiceModel service) async {
     final uid = FireBaseInitial.auth.currentUser?.uid;
     String salonId = await getOwnerSalonId() ?? '';
     String salonName = await getOwnerSalonName();
 
-    // If salon doesn't exist yet, generate a fallback salon doc
     if (salonId.isEmpty) {
       if (uid != null) {
-        final newSalonDoc = FireBaseInitial.firestore.collection('salons').doc();
+        final newSalonDoc = FireBaseInitial.firestore
+            .collection('salons')
+            .doc();
         salonId = newSalonDoc.id;
         await newSalonDoc.set({
           'salonId': salonId,
@@ -97,13 +95,11 @@ class ServicesRepo {
     serviceData['ownerId'] = uid ?? '';
     serviceData['createdAt'] = FieldValue.serverTimestamp();
 
-    // 1. Save in top-level 'services' collection
     await FireBaseInitial.firestore
         .collection('services')
         .doc(serviceDocId)
         .set(serviceData);
 
-    // 2. Save in subcollection under the salon
     if (salonId.isNotEmpty) {
       await FireBaseInitial.firestore
           .collection('salons')
@@ -112,7 +108,6 @@ class ServicesRepo {
           .doc(serviceDocId)
           .set(serviceToSave.toJson());
 
-      // 3. Update salon categories array so client filtering picks up the salon
       if (service.category.isNotEmpty) {
         final categoriesList = service.category
             .split(',')
@@ -123,14 +118,12 @@ class ServicesRepo {
         await FireBaseInitial.firestore
             .collection('salons')
             .doc(salonId)
-            .update({
-          'categories': FieldValue.arrayUnion(categoriesList),
-        }).catchError((_) {});
+            .update({'categories': FieldValue.arrayUnion(categoriesList)})
+            .catchError((_) {});
       }
     }
   }
 
-  /// Stream of services for a given salon
   Stream<List<ServiceModel>> getSalonServicesStream(String salonId) {
     return FireBaseInitial.firestore
         .collection('salons')
@@ -138,13 +131,12 @@ class ServicesRepo {
         .collection('services')
         .snapshots()
         .map((snapshot) {
-      return snapshot.docs
-          .map((doc) => ServiceModel.fromJson(doc.data()))
-          .toList();
-    });
+          return snapshot.docs
+              .map((doc) => ServiceModel.fromJson(doc.data()))
+              .toList();
+        });
   }
 
-  /// Stream of services for the currently logged-in owner
   Stream<List<ServiceModel>> getOwnerServicesStream() {
     final uid = FireBaseInitial.auth.currentUser?.uid;
     if (uid == null) {
@@ -155,13 +147,12 @@ class ServicesRepo {
         .where('ownerId', isEqualTo: uid)
         .snapshots()
         .map((snapshot) {
-      return snapshot.docs
-          .map((doc) => ServiceModel.fromJson(doc.data()))
-          .toList();
-    });
+          return snapshot.docs
+              .map((doc) => ServiceModel.fromJson(doc.data()))
+              .toList();
+        });
   }
 
-  /// Delete a service by its ID
   Future<void> deleteService(String serviceId) async {
     try {
       final salonId = await getOwnerSalonId();
