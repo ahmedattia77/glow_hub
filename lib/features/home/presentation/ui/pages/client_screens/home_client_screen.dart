@@ -4,6 +4,9 @@ import 'package:glow_hub/core/common_widgets/curved_app_header.dart';
 import 'package:glow_hub/core/common_widgets/popular_salons.dart';
 import 'package:glow_hub/features/home/presentation/ui/widgets/client_widgets/category_item.dart';
 import 'package:glow_hub/features/home/presentation/ui/widgets/client_widgets/home_client_offers_banner.dart';
+import 'package:glow_hub/features/home/data/repo/salon_repo.dart';
+import 'package:glow_hub/features/home/presentation/ui/cubit/home_client_cubit.dart';
+import 'package:glow_hub/features/home/presentation/ui/widgets/salon_item_card.dart';
 import '../../../../../../core/theme/app_colors.dart';
 
 class HomeClientScreen extends StatefulWidget {

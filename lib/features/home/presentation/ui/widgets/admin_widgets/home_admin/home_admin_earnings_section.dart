@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:glow_hub/core/theme/app_colors.dart';
-import 'package:glow_hub/features/home/data/model/admin_dashboard_models.dart';
+import 'package:glow_hub/features/home/data/repo/admin_dashboard_repo.dart';
 
-class AdminEarningsSection extends StatelessWidget {
-  final List<double> yAxisMarks;
-  final List<EarningsBarItem> bars;
+class HomeAdminEarningsSection extends StatelessWidget {
+  final AdminDashboardRepo repo;
 
-  const AdminEarningsSection({
+  const HomeAdminEarningsSection({
     super.key,
-    required this.yAxisMarks,
-    required this.bars,
+    required this.repo,
   });
 
   @override
@@ -20,6 +18,9 @@ class AdminEarningsSection extends StatelessWidget {
         isDark ? AppColors.textPrimaryDark : AppColors.textPrimaryLight;
     final secondaryTextColor =
         isDark ? AppColors.textSecondaryDark : const Color(0xFF8E8E93);
+
+    final yAxisMarks = repo.yAxisMarks;
+    final bars = repo.earningsBars;
 
     const double maxY = 2500;
     final chartHeight = 115.h;

@@ -10,6 +10,11 @@ import 'package:glow_hub/features/authentication/presentation/ui/widgest/user_ro
 import 'package:glow_hub/features/salon_details/data/repo/salon_details_repo.dart';
 import 'package:glow_hub/features/salon_details/presentation/cubit/salon_details_cubit.dart';
 import 'package:glow_hub/features/salon_details/presentation/ui/pages/salon_details_screen.dart';
+import 'package:glow_hub/features/home/data/repo/services_repo.dart';
+import 'package:glow_hub/features/home/presentation/ui/cubit/add_service_cubit.dart';
+import 'package:glow_hub/features/home/presentation/ui/cubit/admin_services_cubit.dart';
+import 'package:glow_hub/features/home/presentation/ui/pages/admin_screens/add_service_screen.dart';
+import 'package:glow_hub/features/home/presentation/ui/pages/admin_screens/admin_services_screen.dart';
 import 'package:glow_hub/main_layout.dart';
 import 'routes.dart';
 
@@ -95,12 +100,34 @@ class AppRouter {
             child: SalonDetailsScreen(salonId: salonId),
           ),
           settings: settings,
+      case Routes.adminHomeScreen:
+        return MaterialPageRoute(
+          builder: (_) => const MainLayout(userRole: UserRole.admin),
         );
 
-      // case Routes.clientHomeScreen:
-      //   return MaterialPageRoute(
-      //     builder: (_) => const MainLayout(userRole: UserRole.client),
-      //   );
+      case Routes.adminAddServiceScreen:
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (context) =>
+                AddServiceCubit(const ServicesRepo())..loadSalonName(),
+            child: const AddServiceScreen(),
+          ),
+        );
+
+      case Routes.adminManageServicesScreen:
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (context) => AdminServicesCubit(const ServicesRepo())
+              ..getServices()
+              ..getSalonName(),
+            child: const AdminServicesScreen(),
+          ),
+        );
+
+      case Routes.clientHomeScreen:
+        return MaterialPageRoute(
+          builder: (_) => const MainLayout(userRole: UserRole.client),
+        );
 
       default:
         return MaterialPageRoute(
