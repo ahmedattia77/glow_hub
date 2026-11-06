@@ -18,13 +18,13 @@ class Routes {
 
   // 3. Customer Routes
   static const String clientHomeScreen = '/userHomeScreen';
-  static const String salonDetailsScreen = '/salonDetailsScreen';
   static const String bookingScreen = '/bookingScreen';
   static const String myAppointmentsScreen = '/myAppointmentsScreen';
   static const String userPreferencesSettingsScreen =
       '/userPreferencesSettingsScreen';
 
   // 4. Shared Routes (Notifications Only)
+  static const String salonDetailsScreen = '/salonDetailsScreen';
   static const String notificationsScreen = '/notificationsScreen';
   static const String aboutUsScreen = '/aboutUsScreen';
 }

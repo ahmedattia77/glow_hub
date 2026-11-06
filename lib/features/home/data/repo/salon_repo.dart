@@ -25,8 +25,7 @@ class SalonRepo {
       if (searchQuery != null && searchQuery.trim().isNotEmpty) {
         final queryText = searchQuery.trim().toLowerCase();
         salons = salons.where((salon) {
-          return salon.name.toLowerCase().contains(queryText) ||
-              salon.address.toLowerCase().contains(queryText);
+          return salon.name.toLowerCase().contains(queryText);
         }).toList();
       }
 

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:glow_hub/core/firebase_helper/firebase_initial.dart';
 import 'package:glow_hub/features/home/data/model/shared_models/nav_item_model.dart';
+import 'package:glow_hub/features/home/data/repo/salon_repo.dart';
+import 'package:glow_hub/features/home/presentation/ui/cubit/home_client_cubit.dart';
 import 'package:glow_hub/features/home/presentation/ui/pages/admin_screens/admin_services_screen.dart';
 import 'package:glow_hub/features/home/presentation/ui/pages/admin_screens/home_admin_screen.dart';
 import 'package:glow_hub/features/home/presentation/ui/pages/client_screens/client_profile_screen.dart';
@@ -14,7 +16,10 @@ final List<NavItemModel> clientNavItems = [
   NavItemModel(
     label: 'Home',
     icon: Icons.home_rounded,
-    screen: HomeClientScreen(),
+    screen: BlocProvider(
+      create: (context) => HomeClientCubit(SalonRepo())..fetchSalons(),
+      child: HomeClientScreen(),
+    ),
   ),
   NavItemModel(
     label: 'Explore',
