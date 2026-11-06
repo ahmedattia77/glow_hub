@@ -1,3 +1,5 @@
+import 'package:glow_hub/features/home/data/model/service_model.dart';
+
 class SalonDetailsModel {
   final String salonId;
   final String ownerId;
@@ -36,9 +38,11 @@ class SalonDetailsModel {
       return [];
     }
 
-    List parseServices(dynamic servicesData) {
+    List<ServiceModel> parseServices(dynamic servicesData) {
       if (servicesData is List) {
-        return servicesData.map((e) => Map<String, dynamic>.from(e)).toList();
+        return servicesData
+            .map((e) => ServiceModel.fromJson(Map<String, dynamic>.from(e)))
+            .toList();
       }
       return [];
     }

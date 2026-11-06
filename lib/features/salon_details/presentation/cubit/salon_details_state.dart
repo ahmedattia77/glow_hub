@@ -10,6 +10,7 @@ class SalonDetailsLoading extends SalonDetailsState {}
 class SalonDetailsLoaded extends SalonDetailsState {
   final SalonDetailsModel salonDetails;
   final List<int> selectedServiceIndices;
+  final List<int> homeServiceIndices;
   final int selectedDayIndex;
   final String? selectedTimeSlot;
   final bool isHomeService;
@@ -17,6 +18,7 @@ class SalonDetailsLoaded extends SalonDetailsState {
   SalonDetailsLoaded({
     required this.salonDetails,
     this.selectedServiceIndices = const [],
+    this.homeServiceIndices = const [],
     this.selectedDayIndex = 1,
     this.selectedTimeSlot,
     this.isHomeService = false,
@@ -25,6 +27,7 @@ class SalonDetailsLoaded extends SalonDetailsState {
   SalonDetailsLoaded copyWith({
     SalonDetailsModel? salonDetails,
     List<int>? selectedServiceIndices,
+    List<int>? homeServiceIndices,
     int? selectedDayIndex,
     String? selectedTimeSlot,
     bool? isHomeService,
@@ -33,6 +36,7 @@ class SalonDetailsLoaded extends SalonDetailsState {
       salonDetails: salonDetails ?? this.salonDetails,
       selectedServiceIndices:
           selectedServiceIndices ?? this.selectedServiceIndices,
+      homeServiceIndices: homeServiceIndices ?? this.homeServiceIndices,
       selectedDayIndex: selectedDayIndex ?? this.selectedDayIndex,
       selectedTimeSlot: selectedTimeSlot ?? this.selectedTimeSlot,
       isHomeService: isHomeService ?? this.isHomeService,

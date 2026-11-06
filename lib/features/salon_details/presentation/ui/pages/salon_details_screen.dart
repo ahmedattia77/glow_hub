@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:glow_hub/features/home/data/model/service_model.dart';
 import 'package:glow_hub/features/salon_details/presentation/cubit/salon_details_cubit.dart';
 import 'package:glow_hub/features/salon_details/presentation/ui/widgest/booking_bottom_bar.dart';
 import 'package:glow_hub/features/salon_details/presentation/ui/widgest/calendar_picker_widget.dart';
@@ -83,13 +84,15 @@ class SalonDetailsScreen extends StatelessWidget {
                             SizedBox(height: 20.h),
                             SalonCategoriesRow(categories: salon.categories),
                             SizedBox(height: 20.h),
-                            SalonServicesList(services: salon.services),
+                            SalonServicesList(
+                              services: salon.services as List<ServiceModel>,
+                            ),
                             SizedBox(height: 20.h),
                             const CalendarPickerWidget(),
                             SizedBox(height: 20.h),
                             const TimeSlotsGrid(),
                             SizedBox(height: 20.h),
-                            const ServiceTypeToggle(),
+                            // const ServiceTypeToggle(),
                           ],
                         ),
                       ),

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:glow_hub/features/salon_details/data/model/salon_details_model.dart';
+import 'package:glow_hub/features/salon_details/data/repo/booking_repo.dart';
 import 'package:glow_hub/features/salon_details/presentation/cubit/salon_details_cubit.dart';
 
 class BookingBottomBar extends StatelessWidget {
@@ -29,13 +30,15 @@ class BookingBottomBar extends StatelessWidget {
 
           for (var index in state.selectedServiceIndices) {
             if (index < salon.services.length) {
-              final priceVal = salon.services[index]['price'];
-              if (priceVal is num) {
-                totalPrice += priceVal.toDouble();
-              } else if (priceVal is String) {
-                totalPrice +=
-                    double.tryParse(priceVal.replaceAll('\$', '')) ?? 0.0;
-              }
+              final service = salon.services[index]; // ServiceModel
+              final double originalPrice = service.price;
+              final double? discount = service.discount;
+
+              final double finalPrice = (discount != null && discount > 0)
+                  ? (originalPrice - discount)
+                  : originalPrice;
+
+              totalPrice += finalPrice;
             }
           }
         }
@@ -106,7 +109,6 @@ class BookingBottomBar extends StatelessWidget {
                         ),
                       ),
                       onPressed: () {
-                        // 1. التحقق من اختيار الخدمات
                         if (!hasSelectedServices) {
                           ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(
@@ -118,7 +120,6 @@ class BookingBottomBar extends StatelessWidget {
                           return;
                         }
 
-                        // 2. التحقق من اختيار وقت الحجز
                         if (!hasSelectedTimeSlot) {
                           ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(
@@ -128,11 +129,15 @@ class BookingBottomBar extends StatelessWidget {
                           return;
                         }
 
-                        // 3. لو كله تمام، يتم تنفيذ عملية الحجز
                         if (state is SalonDetailsLoaded) {
-                          // TODO: استدعاء دالة الحجز في الـ Cubit وتمرير البيانات (salonId, ownerId, services, timeSlot, totalPrice)
-                          print(
-                            "Booking Confirmed for Salon ID: ${salon.salonId} & Owner ID: ${salon.ownerId}",
+                          context.read<SalonDetailsCubit>().confirmBooking(
+                            salonId: salon.salonId,
+                            bookingRepo: BookingRepo(),
+                          );
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text('Booking Confirmed Successfully!'),
+                            ),
                           );
                         }
                       },
